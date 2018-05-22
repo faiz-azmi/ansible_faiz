@@ -8,12 +8,12 @@
     bigip_admin_credentials: admin
 
   tasks:
-    - name: Configure NTP1
+    - name: Configure NTP
       bigip_device_ntp:
-        ntp_servers: "{{ ntp_addr1 }}"
-    - name: Configure NTP2
-      bigip_device_ntp:
-        ntp_servers: "{{ ntp_addr1 }}"
-    - name: Configure DNS
+        ntp_servers: "{{ ntp_addr }}"
+    - name: Configure DNS1
       bigip_device_dns:
-        name_servers: "{{ dns_addr }}"
+        name_servers: "{{ dns_addr1 }}"
+    - name: Configure DNS2
+      bigip_device_dns:
+        name_servers: "{{ dns_addr2 }}"
