@@ -12,11 +12,14 @@
       bigip_provision:
         module: ltm
         level: "{{ ltm_level }}"
+        validate_certs: no
     - name: Provision ASM at "nominal" level
       bigip_provision:
         module: asm
         level: "{{ asm_level }}"
+        validate_certs: no
     - name: Provision AFM at "nominal" level
       bigip_provision:
         module: afm
         level: "{{ afm_level }}"	
+        validate_certs: no
