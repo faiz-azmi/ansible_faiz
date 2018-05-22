@@ -28,4 +28,3 @@
           server: "{{ ansible_host }}"
           password: "{{ bigip_admin_credentials }}"
           validate_certs: no
-
