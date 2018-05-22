@@ -1,2 +1,2 @@
 [BIGIP]
-bigip1 ansible_host=172.28.28.1
+bigip1 ansible_host=10.200.69.11
