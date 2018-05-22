@@ -1,0 +1,19 @@
+---
+
+- name: Add ntp and dns server
+  hosts: all
+  gather_facts: no
+  connection: local
+  vars:
+    bigip_admin_credentials: admin
+
+  tasks:
+    - name: Configure NTP
+      bigip_device_ntp:
+        ntp_servers:
+          - 192.168.11.168
+    - name: Configure DNS
+      bigip_device_dns:
+        name_servers:
+          - 172.28.64.241
+          - 172.28.64.242
