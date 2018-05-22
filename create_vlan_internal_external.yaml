@@ -12,6 +12,7 @@
       bigip_vlan:
         name: "{{ vlan_10_name }}"
         tagged_interfaces: "{{ vlan10_interface }}"
+        tag: "{{ tag_id_external }}"
         provider:
           user: admin
           server: "{{ ansible_host }}"
@@ -21,6 +22,7 @@
       bigip_vlan:
         name: "{{ vlan_20_name }}"
         tagged_interfaces: "{{ vlan20_interface }}"
+        tag: "{{ tag_id_internal }}"
         provider:
           user: admin
           server: "{{ ansible_host }}"
