@@ -1,0 +1,29 @@
+---
+
+- name: Create Internal and External VLAN
+  hosts: all
+  gather_facts: no
+  connection: local
+  vars:
+    bigip_admin_credentials: admin
+
+  tasks:
+    - name: Create VLAN External
+      bigip_vlan:
+        name: "{{ vlan_10_name }}"
+        tagged_interfaces: "{{ vlan10_interface }}"
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
+    - name: Create VLAN Internal
+      bigip_vlan:
+        name: "{{ vlan_20_name }}"
+        tagged_interfaces: "{{ vlan20_interface }}"
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
+
