@@ -10,7 +10,7 @@
   environment:
     F5_VALIDATE_CERTS: no 
  
-   tasks:
+  tasks:
     - name: Provision LTM at "nominal" level
       bigip_provision:
         module: ltm
