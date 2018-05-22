@@ -11,7 +11,6 @@
     - name: Configure NTP
       bigip_device_ntp:
         ntp_servers: "{{ ntp_addr }}"
-        validate_certs: no
         provider:
           user: admin
           server: "{{ ansible_host }}"
@@ -20,7 +19,6 @@
     - name: Configure DNS1
       bigip_device_dns:
         name_servers: "{{ dns_addr1 }}"
-        validate_certs: no
         provider:
           user: admin
           server: "{{ ansible_host }}"
@@ -29,7 +27,6 @@
     - name: Configure DNS2
       bigip_device_dns:
         name_servers: "{{ dns_addr2 }}"
-        validate_certs: no
         provider:
           user: admin
           server: "{{ ansible_host }}"
