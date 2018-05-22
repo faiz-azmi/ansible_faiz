@@ -6,20 +6,32 @@
   connection: local
   vars:
     bigip_admin_credentials: admin
-  
-  environment:
-    F5_VALIDATE_CERTS: no 
- 
+   
   tasks:
     - name: Provision LTM at "nominal" level
       bigip_provision:
         module: ltm
         level: "{{ ltm_level }}"
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
     - name: Provision ASM at "nominal" level
       bigip_provision:
         module: asm
         level: "{{ asm_level }}"
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
     - name: Provision AFM at "nominal" level
       bigip_provision:
         module: afm
         level: "{{ afm_level }}"
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
