@@ -15,6 +15,7 @@
         name: "{{ selfip1_1 }}"
         vlan: "{{ vlan10_name }}"
         allow_service: default
+        validate_certs: no
     - name: Create Self IP on vlan20
       bigip_selfip:
         address: "{{ selfip1_2 }}"
@@ -22,4 +23,5 @@
         name: "{{ selfip1_2 }}"
         vlan: "{{ vlan20_name }}"
         allow_service: default
+        validate_certs: no
 
