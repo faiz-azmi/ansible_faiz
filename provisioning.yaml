@@ -1,0 +1,22 @@
+---
+
+- name: Manage Provisioning LTM ASM AFM
+  hosts: all
+  gather_facts: no
+  connection: local
+  vars:
+    bigip_admin_credentials: admin
+
+  tasks:
+    - name: Provision LTM at "nominal" level
+      bigip_provision:
+        module: ltm
+        level: "{{ ltm_level }}"
+	- name: Provision ASM at "nominal" level
+      bigip_provision:
+        module: asm
+        level: "{{ asm_level }}"
+	- name: Provision AFM at "nominal" level
+      bigip_provision:
+        module: afm
+        level: "{{ afm_level }}"	
