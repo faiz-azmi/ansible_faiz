@@ -20,3 +20,14 @@
           server: "{{ ansible_host }}"
           password: "{{ bigip_admin_credentials }}"
           validate_certs: no
+    - name: Create sync failover group
+      bigip_device_group:
+        name: "{{ ha_group }}"
+        auto_sync: no
+        type: sync-failover
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
+		  		  		
