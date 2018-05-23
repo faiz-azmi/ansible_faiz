@@ -1,0 +1,44 @@
+---
+
+- name: Configure config sync for both devices
+  hosts: all
+  gather_facts: no
+  connection: local
+  vars:
+    bigip_admin_credentials: admin
+
+  tasks:
+    - name: Configure Config Sync IP addr for VLAN10
+      bigip_device_connectivity:
+        config_sync_ip: "{{ selfip1_1 }}"
+        unicast_failover:
+          - address: bigip1
+          - address: "{{ selfip1_1 }}"
+        mirror_primary_address: "{{ selfip1_1 }}"
+        provider:
+          user: admin
+          server: bigip1
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
+    - name: Configure Config Sync IP addr for VLAN10
+      bigip_device_connectivity:
+        config_sync_ip: "{{ selfip2_1 }}"
+        unicast_failover:
+          - address: bigip2
+          - address: "{{ selfip2_1 }}"
+        mirror_primary_address: "{{ selfip2_1 }}"
+        provider:
+          user: admin
+          server: bigip2
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no		  	  		  		
+    - name: Establish device trust
+      bigip_device_trust:
+        peer_server: bigip2
+        peer_user: "{{ user }}"
+        peer_password: "{{ password }}"
+        provider:
+          user: admin
+          server: bigip1
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
