@@ -1,0 +1,36 @@
+---
+
+- name: Create Internal and External VLAN
+  hosts: bigip2
+  gather_facts: no
+  connection: local
+  vars:
+    bigip_admin_credentials: admin
+
+  tasks:
+    - name: Create Self IP on vlan10
+      bigip_selfip:
+        address: "{{ selfip2_1 }}"
+        netmask: "{{ netmask_1 }}"
+        name: "{{ selfip2_1 }}"
+        vlan: "{{ vlan10_name }}"
+        allow_service: default
+        validate_certs: no
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
+    - name: Create Self IP on vlan20
+      bigip_selfip:
+        address: "{{ selfip2_2 }}"
+        netmask: "{{ netmask_1 }}"
+        name: "{{ selfip2_2 }}"
+        vlan: "{{ vlan20_name }}"
+        allow_service: default
+        validate_certs: no
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
