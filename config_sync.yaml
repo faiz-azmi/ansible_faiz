@@ -12,7 +12,7 @@
       bigip_device_connectivity:
         config_sync_ip: "{{ selfip1_1 }}"
         unicast_failover:
-          - address: bigip1
+          - address: management-ip
           - address: "{{ selfip1_1 }}"
         mirror_primary_address: "{{ selfip1_1 }}"
         provider:
@@ -24,7 +24,7 @@
       bigip_device_connectivity:
         config_sync_ip: "{{ selfip2_1 }}"
         unicast_failover:
-          - address: bigip2
+          - address: management-ip
           - address: "{{ selfip2_1 }}"
         mirror_primary_address: "{{ selfip2_1 }}"
         provider:
