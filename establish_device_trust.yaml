@@ -7,7 +7,7 @@
   vars:
     bigip_admin_credentials: admin
 
-  tasks:  
+  tasks: 
     - name: Establish device trust
       bigip_device_trust:
         peer_server: "{{ ansible_host }}"
@@ -17,4 +17,4 @@
           user: admin
           server: bigip2
           password: "{{ bigip_admin_credentials }}"
-          validate_certs: no		  	
+          validate_certs: no
