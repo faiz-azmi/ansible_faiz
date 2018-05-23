@@ -10,11 +10,11 @@
   tasks: 
     - name: Establish device trust
       bigip_device_trust:
-        peer_server: bigip2
+        peer_server: "{{ bigip2_ip }}"
         peer_user: "{{ user }}"
         peer_password: "{{ password }}"
         provider:
           user: admin
-          server: bigip2
+          server: "{{ ansible_host }}"
           password: "{{ bigip_admin_credentials }}"
           validate_certs: no
