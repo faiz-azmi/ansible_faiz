@@ -15,7 +15,7 @@
         name: "{{ selfip1_1float }}"
         vlan: "{{ vlan10_name }}"
         allow_service: default
-        validate_certs: no
+        traffic_group: "traffic-group-1"
         provider:
           user: admin
           server: "{{ ansible_host }}"
@@ -28,10 +28,9 @@
         name: "{{ selfip1_2float }}"
         vlan: "{{ vlan20_name }}"
         allow_service: default
-        validate_certs: no
+        traffic_group: "traffic-group-1"
         provider:
           user: admin
           server: "{{ ansible_host }}"
           password: "{{ bigip_admin_credentials }}"
           validate_certs: no
-
