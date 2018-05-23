@@ -1,0 +1,32 @@
+---
+
+- name: Configure config sync for BIGIP1
+  hosts: bigip2
+  gather_facts: no
+  connection: local
+  vars:
+    bigip_admin_credentials: admin
+
+  tasks:
+    - name: Configure Config Sync IP addr for VLAN10
+      bigip_device_connectivity:
+        config_sync_ip: "{{ selfip2_1 }}"
+        unicast_failover:
+          - address: management-ip
+          - address: "{{ selfip2_1 }}"
+        mirror_primary_address: "{{ selfip2_1 }}"
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
+    - name: Create sync failover group
+      bigip_device_group:
+        name: "{{ ha_group }}"
+        auto_sync: no
+        type: sync-failover
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
