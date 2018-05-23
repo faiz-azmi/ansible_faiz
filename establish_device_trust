@@ -1,0 +1,20 @@
+---
+
+- name: Establish device trust from BIGIP1
+  hosts: bigip1
+  gather_facts: no
+  connection: local
+  vars:
+    bigip_admin_credentials: admin
+
+  tasks:  
+    - name: Establish device trust
+      bigip_device_trust:
+        peer_server: "{{ ansible_host }}"
+        peer_user: "{{ user }}"
+        peer_password: "{{ password }}"
+        provider:
+          user: admin
+          server: bigip2
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no		  	
