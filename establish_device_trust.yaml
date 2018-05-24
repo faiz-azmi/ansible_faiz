@@ -6,14 +6,16 @@
   connection: local
   vars:
     bigip_admin_credentials: admin
+    peer_user: admin
+    peer_password: admin
 
   tasks: 
     - name: Establish device trust
       bigip_device_trust:
         peer_server: "{{ bigip2_ip }}"
         peer_hostname: "{{ peer_hostname }}"
-        peer_user: "{{ user }}"
-        peer_password: "{{ password }}"
+        peer_user: "{{ peer_user }}"
+        peer_password: "{{ peer_password }}"
         provider:
           user: admin
           server: "{{ ansible_host }}"
