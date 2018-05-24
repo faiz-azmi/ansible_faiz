@@ -11,6 +11,7 @@
     - name: Establish device trust
       bigip_device_trust:
         peer_server: "{{ bigip2_ip }}"
+        peer_hostname: "{{ peer_hostname }}"
         peer_user: "{{ user }}"
         peer_password: "{{ password }}"
         provider:
