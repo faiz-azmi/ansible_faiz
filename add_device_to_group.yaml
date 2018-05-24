@@ -7,12 +7,11 @@
   vars:
     bigip_admin_credentials: admin
 
-  tasks:
-    - name: Add the current device to the "device_trust_group" device group
-      bigip_device_group_member:
-        device_group: "{{ ha_group }}"
-        hostname: "{{ hostname }}"
-        state: present
+    - name: Create sync failover group
+      bigip_device_group:
+        name: "{{ ha_group }}"
+        auto_sync: no
+        type: sync-failover
         provider:
           user: admin
           server: "{{ ansible_host }}"
