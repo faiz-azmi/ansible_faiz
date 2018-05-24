@@ -12,3 +12,8 @@
       bigip_configsync_action:
         device_group: "{{ ha_group }}"
         sync_device_to_group: yes
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
