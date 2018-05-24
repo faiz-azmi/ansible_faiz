@@ -1,0 +1,14 @@
+---
+
+- name: Establish device trust from BIGIP1
+  hosts: bigip1
+  gather_facts: no
+  connection: local
+  vars:
+    bigip_admin_credentials: admin
+
+  tasks: 
+    - name: Perform sync to group
+      bigip_configsync_action:
+        device_group: "{{ ha_group }}"
+        sync_device_to_group: yes
