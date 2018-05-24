@@ -1,17 +1,17 @@
 ---
 
-- name: Testing importing group and host vars via Tower
+- name: Add devices to group
   hosts: all
   gather_facts: no
   connection: local
   vars:
     bigip_admin_credentials: admin
 
-    - name: Create sync failover group
-      bigip_device_group:
-        name: "{{ ha_group }}"
-        auto_sync: no
-        type: sync-failover
+    - name: add device to group
+      bigip_device_group_member:
+        name: "{{ hostname }}"
+        device_group: "{{ ha_group }}"
+        state: present
         provider:
           user: admin
           server: "{{ ansible_host }}"
