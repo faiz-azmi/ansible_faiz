@@ -1,0 +1,20 @@
+---
+
+- name: Testing importing group and host vars via Tower
+  hosts: all
+  gather_facts: no
+  connection: local
+  vars:
+    bigip_admin_credentials: admin
+
+  tasks:
+    - name: Add the current device to the "device_trust_group" device group
+      bigip_device_group_member:
+        device_group: "{{ ha_group }}"
+        hostname: "{{ hostname }}"
+        state: present
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
