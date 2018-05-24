@@ -1,0 +1,19 @@
+---
+
+- name: Add devices to group
+  hosts: bigip2
+  gather_facts: no
+  connection: local
+  vars:
+    bigip_admin_credentials: admin
+
+    - name: add device to group
+      bigip_device_group_member:
+        name: "{{ hostname }}"
+        device_group: "{{ ha_group }}"
+        state: present
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
