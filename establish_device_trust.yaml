@@ -21,13 +21,3 @@
           server: "{{ ansible_host }}"
           password: "{{ bigip_admin_credentials }}"
           validate_certs: no
-    - name: Add peer device to the "device_trust_group" device group
-      bigip_device_group_member:
-        device_group: "{{ ha_group }}"
-        hostname: "{{ peer_hostname }}"
-        state: present
-        provider:
-          user: admin
-          server: "{{ ansible_host }}"
-          password: "{{ bigip_admin_credentials }}"
-          validate_certs: no
