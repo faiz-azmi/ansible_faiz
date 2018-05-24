@@ -1,0 +1,24 @@
+---
+
+- name: Testing importing group and host vars via Tower
+  hosts: all
+  gather_facts: no
+  connection: local
+  vars:
+    bigip_admin_credentials: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          65626337353631376464663463636162376464393262353638333639396434346362356365353565
+          3939313862323966333664333733313535376431316363310a613632643265646164333665663533
+          64616438616231383332393535353335306536313136376663306233316536356663386435353561
+          6237346162623264610a393536383436623738383334623139663564663133633838356334613932
+          3032
+
+  tasks:
+    - name: Setting the hostname of the target BIGIP
+      bigip_hostname:
+        hostname: "{{ hostname }}"
+        provider:
+          user: admin
+          server: "{{ ansible_host }}"
+          password: "{{ bigip_admin_credentials }}"
+          validate_certs: no
